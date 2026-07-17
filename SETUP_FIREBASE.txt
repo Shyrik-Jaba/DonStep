@@ -1,0 +1,41 @@
+НАСТРОЙКА FIREBASE ДЛЯ DonStep
+=================================
+
+1. Открой https://console.firebase.google.com
+2. Создай новый проект (или выбери существующий)
+3. Добавь Android-приложение:
+   - Package name: com.donstep.app
+   - App nickname: DonStep
+   - Загрузи google-services.json
+4. Положи google-services.json в:
+   D:\СУРСЫ\DonStep\android\app\google-services.json
+5. Включи Authentication:
+   - Firebase Console -> Authentication -> Sign-in method
+   - Включи "Email/Password"
+6. Включи Firestore Database:
+   - Firebase Console -> Firestore Database -> Создать
+   - Выбери регион (например, europe-west1)
+   - Правила безопасности (для теста): 
+     rules_version = '2';
+     service cloud.firestore {
+       match /databases/{database}/documents {
+         match /{document=**} {
+           allow read, write: if request.auth != null;
+         }
+       }
+     }
+7. Установи FlutterFire CLI (один раз):
+   dart pub global activate flutterfire_cli
+8. В терминале выполни (из папки проекта):
+   flutterfire configure --project=НАЗВАНИЕ_ТВОЕГО_ПРОЕКТА
+   - Выбери Android (com.donstep.app)
+9. После этого готово! Запускай:
+   flutter run
+
+ИЛИ вручную: создай файл lib/firebase_options.dart с содержимым из
+документации Firebase для твоего проекта.
+
+После настройки Firebase:
+   flutter clean
+   flutter pub get
+   flutter run

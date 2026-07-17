@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "732229664927",
+    "project_id": "donstep-7b0f0",
+    "storage_bucket": "donstep-7b0f0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732229664927:android:59a4a8b6812f79befd22aa",
+        "android_client_info": {
+          "package_name": "com.donstep.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR7YOYOpcbGzZ57BPUU8HeghmmCsIMYvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
