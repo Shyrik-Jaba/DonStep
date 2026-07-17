@@ -25,7 +25,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.donstep.app"
-    compileSdk = 35
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -36,7 +36,7 @@ android {
     defaultConfig {
         applicationId = "com.donstep.app"
         minSdk = 23
-        targetSdk = 35
+        targetSdk = 34
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
