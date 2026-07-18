@@ -1,25 +1,26 @@
 import 'dart:async';
-import 'package:pedometer/pedometer.dart';
+import 'package:flutter/services.dart';
 
 class StepCounterService {
-  StreamSubscription<StepCount>? _subscription;
+  static const _eventChannel = EventChannel('com.donstep.app/steps');
+  StreamSubscription<dynamic>? _subscription;
   int _totalSteps = 0;
   int _baseSteps = 0;
   bool _initialized = false;
 
   int get totalSteps => _totalSteps;
 
-  Stream<int> get stepStream => _stepController.stream;
   final StreamController<int> _stepController = StreamController<int>.broadcast();
+  Stream<int> get stepStream => _stepController.stream;
 
   void start() {
-    _subscription = Pedometer.stepCountStream.listen((stepCount) {
-      final steps = stepCount.steps;
+    _subscription = _eventChannel.receiveBroadcastStream().listen((steps) {
+      final currentSteps = steps as int;
       if (!_initialized) {
-        _baseSteps = steps;
+        _baseSteps = currentSteps;
         _initialized = true;
       }
-      _totalSteps = steps - _baseSteps;
+      _totalSteps = currentSteps - _baseSteps;
       _stepController.add(_totalSteps);
     });
   }
